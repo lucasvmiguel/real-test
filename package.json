@@ -1,0 +1,24 @@
+{
+  "name": "real_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register --recursive test",
+    "selenium": "java -jar webdrivers/selenium-server-standalone-2.42.2.jar",
+    "start": "babel-node index.js && nightwatch",
+    "build": "babel-node index.js",
+    "nightwatch:all": "nightwatch",
+    "help": "echo escrever isso"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "chromedriver": "^2.19.0",
+    "mocha": "^2.3.3",
+    "nightwatch": "^0.8.6",
+    "read-file": "^0.2.0",
+    "selenium-server": "^2.48.2"
+  }
+}
