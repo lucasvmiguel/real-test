@@ -1,3 +1,7 @@
+# Real-Test
+
+Package that provides real e2e tests
+
 ## Installation
 
 ```bash
@@ -96,6 +100,25 @@ $ npm start
 ```
 
 All actions are in actions [folder](actions)
+
+## Configuration
+
+
+* If action url does not have a value attribute, the app will use url attribute in json
+* originPath is the path where the app will read the tests
+* destPath is the path where the app will compile the tests
+```json
+  {
+  "url":{
+    "default": "",
+    "prefix": "",
+    "sufix": ""
+  },
+    "originPath": "./tests/",
+    "destPath": "./tests_written/",
+    "format": "utf8"
+  }
+```
 
 ## License
 
