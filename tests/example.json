@@ -1,0 +1,9 @@
+[
+	{"action": "url", "value": "http://www.amazon.com.br/"},
+	{"action": "assert", "type": "urlEquals", "value": "http://www.amazon.com.br/", "timeout": 3000},
+	{"action": "desktop"},
+	{"action": "write", "required": true, "selector": "#twotabsearchtextbox", "value": "notebook"},
+	{"action": "click", "required": true, "selector": "#nav-search > form > div.nav-right > div > input"},
+	{"action": "assert", "type": "urlContains", "value": "notebook", "timeout": 10000},
+	{"action": "pause", "value": 5000}
+]
