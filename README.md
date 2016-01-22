@@ -95,6 +95,8 @@ $ npm start
   }
 ```
 
+All actions are in actions [folder](actions)
+
 ## License
 
   [MIT](LICENSE)
