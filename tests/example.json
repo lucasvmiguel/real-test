@@ -1,9 +1,9 @@
 [
 	{"action": "url", "value": "?test=true"},
-	{"action": "assert", "type": "urlEquals", "value": "http://www.amazon.com.br/?test=true", "timeout": 3000},
+	{"action": "assert", "type": "urlEquals", "value": "http://www.amazon.com.br/?test=true", "timeout": "!!timeout"},
 	{"action": "desktop"},
 	{"action": "write", "required": true, "selector": "#twotabsearchtextbox", "value": "notebook"},
 	{"action": "click", "required": true, "selector": "#nav-search > form > div.nav-right > div > input"},
-	{"action": "assert", "type": "urlContains", "value": "notebook", "timeout": 10000},
-	{"action": "pause", "value": 5000}
+	{"action": "assert", "type": "urlContains", "value": "notebook", "timeout": "!!timeout"},
+	{"action": "pause", "value": "!!timeout"}
 ]

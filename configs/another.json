@@ -1,10 +1,14 @@
 {
+  "originPath": "./tests/",
+  "destPath": "./tests_written/",
+  "format": "utf8",
+
   "url":{
-    "default": "http://walmart.com.br",
+    "default": "http://amazon.com.br",
     "prefix": "",
     "sufix": ""
   },
-  "originPath": "./tests/",
-  "destPath": "./tests_written/",
-  "format": "utf8"
+  "variables":{
+    "timeout": "5000"
+  }
 }
