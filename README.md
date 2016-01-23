@@ -1,4 +1,5 @@
 # Real-Test
+[![Build Status](https://travis-ci.org/lucasvmiguel/real-test.svg?branch=master)](https://travis-ci.org/lucasvmiguel/real-test)
 
 Package that provides real e2e tests
 
