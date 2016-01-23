@@ -1,6 +1,6 @@
 [
-	{"action": "url", "value": "http://www.amazon.com.br/"},
-	{"action": "assert", "type": "urlEquals", "value": "http://www.amazon.com.br/", "timeout": 3000},
+	{"action": "url", "value": "?test=true"},
+	{"action": "assert", "type": "urlEquals", "value": "http://www.amazon.com.br/?test=true", "timeout": 3000},
 	{"action": "desktop"},
 	{"action": "write", "required": true, "selector": "#twotabsearchtextbox", "value": "notebook"},
 	{"action": "click", "required": true, "selector": "#nav-search > form > div.nav-right > div > input"},
