@@ -2,3 +2,4 @@ node_modules
 reports
 tests_written
 selenium-debug.log
+npm-debug.log
