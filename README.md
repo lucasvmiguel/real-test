@@ -27,7 +27,7 @@ $ npm start [--CONFIG]
 ```json
   {
     "action": "assert",
-    "type": "urlContains|urlEquals",
+    "type": "urlContains|urlEquals|elemExists|elemNotExists",
     "value": "notebook",
     "timeout": 10000
   }
@@ -57,12 +57,6 @@ $ npm start [--CONFIG]
   {
     "action": "log",
     "value": "message"
-  }
-```
-* Logger: get log from console in browser
-```json
-  {
-    "action": "logger",
   }
 ```
 * Pause: Pause the test for X milliseconds
@@ -104,11 +98,10 @@ All actions are in actions [folder](actions)
 
 ## Configuration
 
-* If you dont pass the CONFIG arg(terminal), we will run the default configuration
+* If you dont pass the CONFIG arg(terminal), we will run the default.json configuration
 * You can have more than one config file
 * If action url does not have a value attribute, the app will use url attribute in json
-* originPath is the path where the app will read the tests
-* destPath is the path where the app will compile the tests
+* You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
 ```json
   {
   "url":{
@@ -116,8 +109,11 @@ All actions are in actions [folder](actions)
     "prefix": "",
     "sufix": ""
   },
-    "originPath": "./tests/",
-    "destPath": "./tests_written/",
+  "variables":{
+    "timeout": "5000"
+  },
+    "originPath": "./tests/",        "path where the app will read the tests"
+    "destPath": "./tests_written/",  "path where the app will compile the tests"
     "format": "utf8"
   }
 ```

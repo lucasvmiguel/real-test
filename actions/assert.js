@@ -7,12 +7,20 @@ export default function assert(action){
         browser.assert.urlEquals('${action.value}');
       });
       `;
-      break;
     case 'urlContains':
       return `      browser.waitForElementPresent('body', ${action.timeout}, function(){
         browser.assert.urlContains('${action.value}');
       });
       `;
-      break;
+    case 'elemExists':
+      return `      browser.waitForElementPresent('body', ${action.timeout}, function(){
+        browser.assert.elementPresent('${action.selector}');
+      });
+      `;
+    case 'elemNotExists':
+      return `      browser.waitForElementPresent('body', ${action.timeout}, function(){
+        browser.assert.elementNotPresent('${action.selector}');
+      });
+      `;
   }
 }
