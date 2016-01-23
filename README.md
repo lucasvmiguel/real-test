@@ -12,7 +12,9 @@ $ git clone https://github.com/lucasvmiguel/real-test
 ## Quick Start
 
 ```bash
-$ npm start [--CONFIG]
+$ npm start [--CONFIG]            #run all tests
+
+$ npm start -- --tag ExampleTest  #run one test
 ```
 
 ## Advantages
