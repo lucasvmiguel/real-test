@@ -1,8 +1,16 @@
 {
   "name": "real_test",
+  "author": "lucasvieira.dev@gmail.com",
   "version": "1.0.0",
   "description": "Package that provides real e2e tests",
+  "license": "MIT",
   "main": "index.js",
+  "keywords": [
+    "teste2e",
+    "e2e",
+    "nightwatch",
+    "test"
+  ],
   "scripts": {
     "test": "mocha --compilers js:babel/register --recursive test",
     "selenium": "java -jar webdrivers/selenium-server-standalone-2.49.1.jar",
@@ -11,8 +19,6 @@
     "nightwatch:all": "nightwatch",
     "help": "echo 'Os comandos do package Real-Test são:\n  npm test             test application\n  npm start            compile and run the tests\n  npm run nightwatch   run the tests\n  npm run selenium     run the selenium server'"
   },
-  "author": "lucasvieira.dev@gmail.com",
-  "license": "MIT",
   "dependencies": {
     "babel": "^5.8.23",
     "chromedriver": "^2.19.0",
