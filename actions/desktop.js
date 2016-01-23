@@ -1,3 +1,3 @@
 export default function desktop(action){
-	return `			browser.resizeWindow(1000, 800);`;
+	return `			browser.resizeWindow(1280, 950);`;
 }
