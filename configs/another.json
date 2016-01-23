@@ -1,0 +1,10 @@
+{
+  "url":{
+    "default": "http://walmart.com.br",
+    "prefix": "",
+    "sufix": ""
+  },
+  "originPath": "./tests/",
+  "destPath": "./tests_written/",
+  "format": "utf8"
+}

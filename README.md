@@ -11,7 +11,7 @@ $ git clone https://github.com/lucasvmiguel/real-test
 ## Quick Start
 
 ```bash
-$ npm start
+$ npm start [--CONFIG]
 ```
 
 ## Advantages
@@ -103,7 +103,8 @@ All actions are in actions [folder](actions)
 
 ## Configuration
 
-
+* If you dont pass the CONFIG arg(terminal), we will run the default configuration
+* You can have more than one config file
 * If action url does not have a value attribute, the app will use url attribute in json
 * originPath is the path where the app will read the tests
 * destPath is the path where the app will compile the tests
