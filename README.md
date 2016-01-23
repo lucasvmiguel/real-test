@@ -58,6 +58,12 @@ $ npm start -- --tag ExampleTest  #run one test
     "action": "phone"
   }
 ```
+* Tablet: change to view tablet
+```json
+  {
+    "action": "tablet"
+  }
+```
 * Log: log into console
 ```json
   {
