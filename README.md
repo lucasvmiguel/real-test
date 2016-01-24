@@ -33,7 +33,7 @@ $ npm start -- --tag ExampleTest  #run one test
 ```json
   {
     "action": "assert",
-    "type": "urlContains|urlEquals|elemExists|elemNotExists",
+    "type": "urlContains|urlEquals|elemExists|elemNotExists|text",
     "value": "notebook",
     "timeout": 10000
   }
@@ -76,16 +76,6 @@ $ npm start -- --tag ExampleTest  #run one test
   {
     "action": "pause",
     "value": 5000
-  }
-```
-* Read: Read text(assert)
-```json
-  {
-    "action": "read",
-    "timeout": 5000,
-    "value": "message",
-    "selector": "#nav-search > form > div.nav-right > div > input",
-    "require": true
   }
 ```
 * Write: Write text
