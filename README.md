@@ -29,6 +29,15 @@ $ npm start -- --tag ExampleTest  #run one test
 
 ## Actions
 
+* Header: some information to test(needs be the first action)
+* IMPORTANT: you can't write action header with 'only' and 'notOnly' at same time
+```json
+  {
+    "action": "header",
+    "only": "CONFIG_NAME_A",     "USE IT"
+    "notOnly": "CONFIG_NAME_B"   "OR USE IT"
+  }
+```
 * Assert: compare something
 ```json
   {
@@ -106,6 +115,7 @@ All actions are in actions [folder](actions)
 * You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
 ```json
   {
+  "name": "CONFIG_A",
   "url":{
     "default": "",
     "prefix": "",

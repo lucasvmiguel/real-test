@@ -1,7 +1,7 @@
 import url from '../../actions/url';
 import assert from 'assert';
 
-describe('Transpiler', function() {
+describe('Actions', function() {
 	it('should transpile url method', function () {
 		const config1 = {url:{default: '', prefix: '', sufix: ''}};
 		const config2 = {url:{}};
