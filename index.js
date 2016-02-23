@@ -10,5 +10,5 @@ try{
   console.log(`>Config file: ${FILE_CONFIG}.json\n`);
   boot(config);
 }catch(e){
-  console.log(colors.red('ERROR: it was not possible compile the tests, we will run the last compiled tests.\n\n'));
+  console.log(colors.red('ERROR: it was not possible compile the tests, we will run the last compiled tests.\n\n' + e));
 }

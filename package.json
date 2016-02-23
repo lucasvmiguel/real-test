@@ -23,8 +23,10 @@
     "babel": "^5.8.23",
     "chromedriver": "^2.19.0",
     "colors": "^1.1.2",
+    "glob": "^6.0.4",
     "mocha": "^2.3.3",
     "nightwatch": "^0.8.6",
+    "ramda": "0.19.1",
     "read-file": "^0.2.0",
     "selenium-server": "^2.48.2"
   },
