@@ -1,6 +1,6 @@
 {
   "name": "acom",
-  "originPath": "./testando/",
+  "originPath": "./tests/",
   "destPath": "./tests_written/",
   "format": "utf8",
 
