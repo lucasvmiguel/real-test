@@ -16,7 +16,7 @@
     "selenium": "java -jar webdrivers/selenium-server-standalone-2.49.1.jar",
     "start": "babel-node index.js && nightwatch",
     "build": "babel-node index.js",
-    "nightwatch:all": "nightwatch",
+    "nightwatch": "nightwatch",
     "help": "echo 'Os comandos do package Real-Test são:\n  npm test             test application\n  npm start            compile and run the tests\n  npm run nightwatch   run the tests\n  npm run selenium     run the selenium server'"
   },
   "dependencies": {

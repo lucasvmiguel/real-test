@@ -2,7 +2,7 @@ import {shouldTranspileTest} from '../../lib/boot';
 import assert from 'assert';
 
 describe('Actions', function() {
-	it('should transpile test', function () {
+	it.skip('should transpile test', function () {
 		const config1 = {name: 'amazon'};
     const config2 = {};
 

@@ -1,5 +1,4 @@
 import read from 'read-file';
-import colors from 'colors/safe';
 
 import {boot} from './lib/boot';
 

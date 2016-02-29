@@ -34,8 +34,16 @@ $ npm start -- --tag ExampleTest  #run one test
 ```json
   {
     "action": "header",
+    "type": "helper",            "JUST FOR PARCIAL TEST"
     "only": "CONFIG_NAME_A",     "USE IT"
     "notOnly": "CONFIG_NAME_B"   "OR USE IT"
+  }
+```
+* Import: import json inside test
+```json
+  {
+    "action": "import",
+    "value": "Login"
   }
 ```
 * Assert: compare something
