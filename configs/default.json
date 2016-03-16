@@ -1,18 +1,12 @@
 {
   "name": "acom",
-  "originPath": "./tests/",
-  "destPath": "./tests_written/",
-  "format": "utf8",
-
+  "path": "./tests/",
   "url":{
-    "default": "https://staging-sacola.americanas.com.br",
+    "default": "http://www.google.com",
     "prefix": "",
     "sufix": ""
   },
   "variables":{
-    "item": "?codProdFusion=124157739&codItemFusion=124157747&quantity=1#/basket",
-    "timeout": "30000",
-    "user_account": "test.checkout.b2w@gmail.com",
-    "user_pass": "checkout"
+    "search": "real-test github lucasvmiguel"
   }
 }

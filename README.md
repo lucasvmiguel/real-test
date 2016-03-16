@@ -132,9 +132,7 @@ All actions are in actions [folder](actions)
   "variables":{
     "timeout": "5000"
   },
-    "originPath": "./tests/",        "path where the app will read the tests"
-    "destPath": "./tests_written/",  "path where the app will compile the tests"
-    "format": "utf8"
+    "path": "./tests/"        "path where the app will read the tests"
   }
 ```
 

@@ -1,0 +1,9 @@
+[
+  {"action": "url"},
+  {"action": "desktop"},
+  {"action": "write", "value": "!!search", "selector": "#lst-ib"},
+  {"action": "click", "selector": "#sblsbb > button"},
+  {"action": "click", "selector": "#rso > div > div:nth-child(1) > div > h3 > a", "timeout": "5000", "required": "true"},
+  {"action": "assert", "type": "text", "value": "real-test", "selector": "#readme > article > h1"},
+  {"action": "pause", "value": "5000"}
+]
