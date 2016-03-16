@@ -27,6 +27,27 @@ $ npm start -- --tag ExampleTest  #run one test
 * Easy to write tests
 * Componentized
 
+## Configuration
+
+* If you dont pass the CONFIG arg(terminal), we will run the default.json configuration
+* You can have more than one config file
+* If action url does not have a value attribute, the app will use url attribute in json
+* You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
+```json
+  {
+  "name": "CONFIG_A",
+  "url":{
+    "default": "http://www.google.com",
+    "prefix": "",
+    "sufix": ""
+  },
+  "variables":{
+    "search": "real-test github lucasvmiguel"
+  },
+    "path": "./tests/"        "path where the app will read the tests"
+  }
+```
+
 ## Actions
 
 * Header: some information to test(needs be the first action)
@@ -114,27 +135,6 @@ $ npm start -- --tag ExampleTest  #run one test
 ```
 
 All actions are in actions [folder](actions)
-
-## Configuration
-
-* If you dont pass the CONFIG arg(terminal), we will run the default.json configuration
-* You can have more than one config file
-* If action url does not have a value attribute, the app will use url attribute in json
-* You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
-```json
-  {
-  "name": "CONFIG_A",
-  "url":{
-    "default": "",
-    "prefix": "",
-    "sufix": ""
-  },
-  "variables":{
-    "timeout": "5000"
-  },
-    "path": "./tests/"        "path where the app will read the tests"
-  }
-```
 
 ## License
 
