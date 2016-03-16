@@ -1,7 +1,7 @@
 {
   "name": "real_test",
   "author": "lucasvieira.dev@gmail.com",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Package that provides real e2e tests",
   "license": "MIT",
   "main": "index.js",
