@@ -14,7 +14,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel/register --recursive test",
     "selenium": "java -jar webdrivers/selenium-server-standalone-2.49.1.jar",
-    "start": "babel-node index.js && nightwatch",
+    "start": "babel-node index.js && xvfb-run nightwatch",
     "build": "babel-node index.js",
     "nightwatch": "nightwatch",
     "release:patch": "npm test && release-it patch",
