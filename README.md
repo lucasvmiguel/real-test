@@ -6,10 +6,7 @@ Package that provides real e2e tests.
 ## Installation
 
 ```bash
-$ npm install real_test
-
-# OR
-
+$ sudo apt-get install xvfb
 $ git clone https://github.com/lucasvmiguel/real-test
 ```
 
