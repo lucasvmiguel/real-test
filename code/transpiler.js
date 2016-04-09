@@ -1,15 +1,15 @@
 import R from 'ramda';
 
-import click     from '../actions/click';
-import desktop   from '../actions/desktop';
-import pause     from '../actions/pause';
-import phone     from '../actions/phone';
-import url       from '../actions/url';
-import write     from '../actions/write';
-import log       from '../actions/log';
-import logger    from '../actions/logger';
-import assert    from '../actions/assert';
-import tablet    from '../actions/tablet';
+import click     from './actions/click';
+import desktop   from './actions/desktop';
+import pause     from './actions/pause';
+import phone     from './actions/phone';
+import url       from './actions/url';
+import write     from './actions/write';
+import log       from './actions/log';
+import logger    from './actions/logger';
+import assert    from './actions/assert';
+import tablet    from './actions/tablet';
 
 const DELAY_TIME = 200;
 

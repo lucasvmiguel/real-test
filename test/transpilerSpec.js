@@ -1,4 +1,4 @@
-import {replaceVariables, shouldTranspileTest} from '../lib/transpiler';
+import {replaceVariables, shouldTranspileTest} from '../code/transpiler';
 import assert from 'assert';
 
 describe('Transpiler', function() {

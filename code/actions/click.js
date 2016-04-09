@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 export default function click(action){
 
 	if(!action.timeout) action.timeout = 1;

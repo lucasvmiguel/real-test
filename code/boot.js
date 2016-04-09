@@ -3,6 +3,7 @@ import * as importer from './importer';
 import * as transpiler from './transpiler';
 
 export function boot(config){
+	console.log(config);
 
 	//create folder
 	io.createFolder('tests_written');
@@ -11,10 +12,10 @@ export function boot(config){
 	io.deleteFiles('./tests_written/**/*.js');
 
 	//get all tests
-	let tests = io.readFiles(config.path + '**/*.json');
+	let tests = io.readFiles(config.path + '/**/*.json');
 
 	//get all tests names
-	let nameFiles = io.readNameFiles(config.path + '**/*.json');
+	let nameFiles = io.readNameFiles(config.path + '/**/*.json');
 
 	//assoc names with tests
 	let namedTests = tests.map((test, i) => test.insert(0, {title: nameFiles[i]}) );

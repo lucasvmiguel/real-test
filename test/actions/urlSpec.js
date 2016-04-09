@@ -1,4 +1,4 @@
-import url from '../../actions/url';
+import url from '../../code/actions/url';
 import assert from 'assert';
 
 describe('Actions', function() {

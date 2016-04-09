@@ -1,4 +1,4 @@
-import {getTestByName, getIndexTestByName, removeIndexTestByName} from '../lib/importer';
+import {getTestByName, getIndexTestByName, removeIndexTestByName} from '../code/importer';
 import assert from 'assert';
 
 describe('Importer', function() {
