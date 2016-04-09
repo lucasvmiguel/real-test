@@ -6,7 +6,11 @@ Package that provides real e2e tests.
 ## Installation
 
 ```bash
-$ npm install -g real_test
+$ npm install real_test
+
+# OR
+
+$ git clone https://github.com/lucasvmiguel/real-test
 ```
 
 ## Quick Start
