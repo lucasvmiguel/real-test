@@ -9,5 +9,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var CMD_TESTS = 'nightwatch';
 var CMD_HIDDEN_TESTS = 'xvfb-run nightwatch';
+var CMD_TEST = 'nightwatch -- --tag ';
+var CMD_HIDDEN_TEST = 'xvfb-run nightwatch -- --tag ';
 
-cli.start(CMD_TESTS, CMD_HIDDEN_TESTS);
+cli.start(CMD_TESTS, CMD_HIDDEN_TESTS, CMD_TEST, CMD_HIDDEN_TEST);

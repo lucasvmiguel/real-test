@@ -34,14 +34,20 @@ function executeCmd(error, stdout, stderr) {
   }
 }
 
-function runConfig(cmdWithoutHidden, cmdWithHidden) {
+function runConfig(cmdWithoutHidden, cmdWithHidden, cmdOnlyOne, cmdHiddenOnlyOne) {
   try {
     var config = JSON.parse(_fs2.default.readFileSync(_commander2.default.config, 'utf8'));
     console.log('>Config file: ' + _commander2.default.config + '\n');
     (0, _boot.boot)(config);
 
-    if (_commander2.default.omit) {
+    if (_commander2.default.omit && _commander2.default.test) {
+      _shelljs2.default.exec(cmdHiddenOnlyOne + _commander2.default.test, executeCmd);
+    } else if (_commander2.default.omit && !_commander2.default.test) {
       _shelljs2.default.exec(cmdWithHidden, executeCmd);
+    } else if (!_commander2.default.omit && _commander2.default.test) {
+      _shelljs2.default.exec(cmdHiddenOnlyOne + _commander2.default.test, executeCmd);
+    } else if (!_commander2.default.omit && !_commander2.default.test) {
+      _shelljs2.default.exec(cmdWithoutHidden, executeCmd);
     } else {
       _shelljs2.default.exec(cmdWithoutHidden, executeCmd);
     }
@@ -51,8 +57,8 @@ function runConfig(cmdWithoutHidden, cmdWithHidden) {
   }
 }
 
-function start(cmd1, cmd2) {
-  _commander2.default.version('0.2.1').option('-c, --config <config>', 'read config file').option('-o, --omit', 'omit browser window').parse(process.argv);
+function start(cmd1, cmd2, cmd3, cmd4) {
+  _commander2.default.version('0.2.1').option('-c, --config <config>', 'read config file').option('-o, --omit', 'omit browser window(real-test needs xvfb)').option('-t, --test <test>', 'only runs on test').parse(process.argv);
 
   if (_commander2.default.config) {
     runConfig(cmd1, cmd2);

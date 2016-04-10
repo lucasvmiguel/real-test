@@ -20,7 +20,6 @@ var transpiler = _interopRequireWildcard(_transpiler);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function boot(config) {
-	console.log(config);
 
 	//create folder
 	io.createFolder('tests_written');

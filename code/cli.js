@@ -13,14 +13,20 @@ function executeCmd(error, stdout, stderr){
   }
 }
 
-function runConfig(cmdWithoutHidden, cmdWithHidden){
+function runConfig(cmdWithoutHidden, cmdWithHidden, cmdOnlyOne, cmdHiddenOnlyOne){
   try{
     var config = JSON.parse(fs.readFileSync(cli.config, 'utf8'));
     console.log(`>Config file: ${cli.config}\n`);
     boot(config);
 
-    if(cli.omit){
+    if(cli.omit && cli.test){
+      sheel.exec(cmdHiddenOnlyOne + cli.test, executeCmd);
+    }else if(cli.omit && !cli.test){
       sheel.exec(cmdWithHidden, executeCmd);
+    }else if(!cli.omit && cli.test){
+      sheel.exec(cmdHiddenOnlyOne + cli.test, executeCmd);
+    }else if(!cli.omit && !cli.test){
+      sheel.exec(cmdWithoutHidden, executeCmd);
     }else{
       sheel.exec(cmdWithoutHidden, executeCmd);
     }
@@ -31,11 +37,12 @@ function runConfig(cmdWithoutHidden, cmdWithHidden){
   }
 }
 
-export function start(cmd1, cmd2){
+export function start(cmd1, cmd2, cmd3, cmd4){
   cli
     .version('0.2.1')
     .option('-c, --config <config>', 'read config file')
-    .option('-o, --omit', 'omit browser window')
+    .option('-o, --omit', 'omit browser window(real-test needs xvfb)')
+    .option('-t, --test <test>', 'only runs on test')
     .parse(process.argv);
 
   if(cli.config){

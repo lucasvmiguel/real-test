@@ -6,19 +6,18 @@ Package that provides real e2e tests.
 ## Installation
 
 ```bash
-$ npm install real_test
-
-# OR
-
-$ git clone https://github.com/lucasvmiguel/real-test
+$ npm install -g real_test
 ```
 
 ## Quick Start
 
 ```bash
-$ npm start [--CONFIG]            #run all tests
+$ real-test -c /home/user/documents/configs/example.json
+```
 
-$ npm start -- --tag ExampleTest  #run one test
+to see more options:
+```bash
+$ real-test -h
 ```
 
 ## Advantages
@@ -29,8 +28,6 @@ $ npm start -- --tag ExampleTest  #run one test
 
 ## Configuration
 
-* If you dont pass the CONFIG arg(terminal), we will run the default.json configuration
-* You can have more than one config file
 * If action url does not have a value attribute, the app will use url attribute in json
 * You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
 ```json
@@ -44,7 +41,7 @@ $ npm start -- --tag ExampleTest  #run one test
   "variables":{
     "search": "real-test github lucasvmiguel"
   },
-    "path": "./tests/"        "path where the app will read the tests"
+    "path": "/home/user/documents/tests"        "path where the app will read the tests"
   }
 ```
 
@@ -61,6 +58,7 @@ $ npm start -- --tag ExampleTest  #run one test
   }
 ```
 * Import: import json inside test
+* IMPORTANT: You need set header type helper to import a file
 ```json
   {
     "action": "import",
@@ -134,7 +132,7 @@ $ npm start -- --tag ExampleTest  #run one test
   }
 ```
 
-All actions are in actions [folder](actions)
+All actions are in actions [folder](code/actions)
 
 ## License
 

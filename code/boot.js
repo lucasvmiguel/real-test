@@ -3,7 +3,6 @@ import * as importer from './importer';
 import * as transpiler from './transpiler';
 
 export function boot(config){
-	console.log(config);
 
 	//create folder
 	io.createFolder('tests_written');
