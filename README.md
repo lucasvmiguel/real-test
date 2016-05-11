@@ -6,6 +6,8 @@ Package that provides real e2e tests.
 ## Installation
 
 ```bash
+$ sudo apt-get install xvfb # just to run hidden tests
+$ npm install -g nightwatch
 $ npm install -g real_test
 ```
 
