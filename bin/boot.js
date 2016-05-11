@@ -22,10 +22,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function boot(config) {
 
 	//create folder
-	io.createFolder('tests_written');
+	io.createFolder(__dirname + '/tests_written');
 
 	//delete all tests
-	io.deleteFiles('./tests_written/**/*.js');
+	io.deleteFiles(__dirname + '/tests_written/**/*.js');
 
 	//get all tests
 	var tests = io.readFiles(config.path + '/**/*.json');
@@ -64,7 +64,7 @@ function writeTests(config, tests) {
 			fileStr += transpiler.actions(test, config);
 			fileStr += transpiler.footer(test);
 
-			io.createFile('./tests_written/' + test[0].title + '.js', fileStr);
+			io.createFile(__dirname + '/tests_written/' + test[0].title + '.js', fileStr);
 		}
 	} catch (err) {
 		_didIteratorError = true;
