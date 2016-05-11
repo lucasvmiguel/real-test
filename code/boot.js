@@ -5,10 +5,10 @@ import * as transpiler from './transpiler';
 export function boot(config){
 
 	//create folder
-	io.createFolder('tests_written');
+	io.createFolder(__dirname + '/tests_written');
 
 	//delete all tests
-	io.deleteFiles('./tests_written/**/*.js');
+	io.deleteFiles(__dirname + '/tests_written/**/*.js');
 
 	//get all tests
 	let tests = io.readFiles(config.path + '/**/*.json');
@@ -38,7 +38,7 @@ function writeTests(config, tests){
 	  fileStr += transpiler.actions(test, config);
 		fileStr += transpiler.footer(test);
 
-		io.createFile(`./tests_written/${test[0].title}.js`, fileStr);
+		io.createFile(`${__dirname}/tests_written/${test[0].title}.js`, fileStr);
 	}
 }
 
