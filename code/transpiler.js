@@ -120,6 +120,9 @@ function transpileAction(action, config){
 			return tablet(action);
 		case 'cookie':
 			return cookie(action);
+		default:
+			console.log(colors.red('Error: invalid action: ' + action));
+			process.exit();
 	}
 }
 

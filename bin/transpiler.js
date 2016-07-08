@@ -152,6 +152,9 @@ function transpileAction(action, config) {
 			return (0, _tablet2.default)(action);
 		case 'cookie':
 			return (0, _cookie2.default)(action);
+		default:
+			console.log(colors.red('Error: invalid action: ' + action));
+			process.exit();
 	}
 }
 

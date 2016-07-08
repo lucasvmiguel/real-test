@@ -9,7 +9,7 @@ export default function cookie(action){
       `;
     case 'assert':
       return `      browser.getCookie('${action.name}', function(result){
-        this.assert.equal(result.value, '${action.value}');
+        browser.assert.equal(result.value, '${action.value}');
       });
       `;
   }
