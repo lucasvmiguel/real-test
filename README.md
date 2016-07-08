@@ -8,7 +8,7 @@ Package that provides real e2e tests.
 ```bash
 $ sudo apt-get install xvfb # just to run hidden tests
 $ npm install -g nightwatch
-$ npm install -g real_test
+$ npm install -g real-test
 ```
 
 ## Quick Start
@@ -74,6 +74,14 @@ $ real-test -h
     "type": "urlContains|urlEquals|elemExists|elemNotExists|text",
     "value": "notebook",
     "timeout": 10000
+  }
+```
+* Cookie: write or assert
+```json
+  {
+    "action": "cookie",
+    "type": "write|assert",
+    "value": "b2b"
   }
 ```
 * Click: click on selector

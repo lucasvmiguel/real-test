@@ -10,6 +10,7 @@ import log       from './actions/log';
 import logger    from './actions/logger';
 import assert    from './actions/assert';
 import tablet    from './actions/tablet';
+import cookie    from './actions/cookie';
 
 const DELAY_TIME = 200;
 
@@ -117,6 +118,8 @@ function transpileAction(action, config){
 			return assert(action);
 		case 'tablet':
 			return tablet(action);
+		case 'cookie':
+			return cookie(action);
 	}
 }
 
