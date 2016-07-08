@@ -7,10 +7,5 @@ export default function cookie(action){
         value: '${action.value}'
       });
       `;
-    case 'assert':
-      return `      browser.getCookie('${action.name}', function(result){
-        browser.assert.equal(result.value, '${action.value}');
-      });
-      `;
   }
 }

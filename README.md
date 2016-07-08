@@ -80,7 +80,7 @@ $ real-test -h
 ```json
   {
     "action": "cookie",
-    "type": "write|assert",
+    "type": "write",
     "value": "b2b"
   }
 ```
