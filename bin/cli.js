@@ -58,7 +58,7 @@ function runConfig(cmdWithoutHidden, cmdWithHidden, cmdOnlyOne, cmdHiddenOnlyOne
 }
 
 function start(cmd1, cmd2, cmd3, cmd4) {
-  _commander2.default.version('0.3.2').option('-c, --config <config>', 'read config file').option('-o, --omit', 'omit browser window(real-test needs xvfb)').option('-t, --test <test>', 'only runs on test').parse(process.argv);
+  _commander2.default.version('0.7.0').option('-c, --config <config>', 'read config file').option('-o, --omit', 'omit browser window(real-test needs xvfb)').option('-t, --test <test>', 'only runs on test').parse(process.argv);
 
   if (_commander2.default.config) {
     runConfig(cmd1, cmd2);

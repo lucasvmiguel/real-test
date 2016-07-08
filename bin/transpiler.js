@@ -53,6 +53,10 @@ var _tablet = require('./actions/tablet');
 
 var _tablet2 = _interopRequireDefault(_tablet);
 
+var _cookie = require('./actions/cookie');
+
+var _cookie2 = _interopRequireDefault(_cookie);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DELAY_TIME = 200;
@@ -146,6 +150,8 @@ function transpileAction(action, config) {
 			return (0, _assert2.default)(action);
 		case 'tablet':
 			return (0, _tablet2.default)(action);
+		case 'cookie':
+			return (0, _cookie2.default)(action);
 	}
 }
 
