@@ -5,6 +5,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.boot = boot;
 
+var _colors = require('colors');
+
+var _colors2 = _interopRequireDefault(_colors);
+
+var _ramda = require('ramda');
+
+var _ramda2 = _interopRequireDefault(_ramda);
+
 var _io = require('./io');
 
 var io = _interopRequireWildcard(_io);
@@ -19,6 +27,8 @@ var transpiler = _interopRequireWildcard(_transpiler);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function boot(config) {
 
 	//create folder
@@ -29,6 +39,11 @@ function boot(config) {
 
 	//get all tests
 	var tests = io.readFiles(config.path + '/**/*.json');
+
+	if (_ramda2.default.isEmpty(tests)) {
+		console.log(_colors2.default.red('Error: there are no tests in this folder: ' + config.path));
+		process.exit();
+	}
 
 	//get all tests names
 	var nameFiles = io.readNameFiles(config.path + '/**/*.json');
@@ -56,12 +71,20 @@ function writeTests(config, tests) {
 
 			var fileStr = '';
 
-			if (!transpiler.shouldTranspileTest(test, config)) {
+			if (_ramda2.default.length(test) < 2 || !transpiler.shouldTranspileTest(test, config)) {
 				continue;
 			}
 
 			fileStr += transpiler.header(test[0].title);
-			fileStr += transpiler.actions(test, config);
+			var compiledActions = transpiler.actions(test, config);
+
+			if (compiledActions.error) {
+				console.log(_colors2.default.red('Error: cant run test: ' + test[0].title));
+				console.log(_colors2.default.red('Error: ' + compiledActions.message));
+				process.exit();
+			}
+
+			fileStr += compiledActions;
 			fileStr += transpiler.footer(test);
 
 			io.createFile(__dirname + '/tests_written/' + test[0].title + '.js', fileStr);

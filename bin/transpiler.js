@@ -13,21 +13,17 @@ var _ramda = require('ramda');
 
 var _ramda2 = _interopRequireDefault(_ramda);
 
+var _colors = require('colors');
+
+var _colors2 = _interopRequireDefault(_colors);
+
 var _click = require('./actions/click');
 
 var _click2 = _interopRequireDefault(_click);
 
-var _desktop = require('./actions/desktop');
-
-var _desktop2 = _interopRequireDefault(_desktop);
-
 var _pause = require('./actions/pause');
 
 var _pause2 = _interopRequireDefault(_pause);
-
-var _phone = require('./actions/phone');
-
-var _phone2 = _interopRequireDefault(_phone);
 
 var _url = require('./actions/url');
 
@@ -49,9 +45,9 @@ var _assert = require('./actions/assert');
 
 var _assert2 = _interopRequireDefault(_assert);
 
-var _tablet = require('./actions/tablet');
+var _resize = require('./actions/resize');
 
-var _tablet2 = _interopRequireDefault(_tablet);
+var _resize2 = _interopRequireDefault(_resize);
 
 var _cookie = require('./actions/cookie');
 
@@ -99,7 +95,13 @@ function actions(actions, config) {
 			if (_ramda2.default.prop('action', action) !== 'header' && _ramda2.default.prop('action', action) !== 'import' && !_ramda2.default.prop('title', action)) {
 
 				action = replaceVariables(action, config);
-				actionsStr += transpileAction(action, config) + '\n';
+
+				var actionString = transpileAction(action, config);
+				if (actionString.error) {
+					return actionString;
+				}
+
+				actionsStr += actionString + '\n';
 				actionsStr += (0, _pause2.default)({ value: DELAY_TIME }) + '\n';
 				actionsStr += (0, _logger2.default)() + '\n\n';
 			}
@@ -123,7 +125,7 @@ function actions(actions, config) {
 }
 
 function header(tag) {
-	return 'var colors = require(\'colors/safe\')\t;\n\nmodule.exports = {\n\ttags:[\'' + tag + '\'],\n\t\'' + tag + '\': function(browser) {;\n\t\t\tvar elementIsExists = function(selector) {\n\t\t\t\treturn document.querySelector(selector);\n\t\t\t};\n\n\t\t\tvar logger = function(logs) {\n\t\t\t\tfor(var i in logs){\n\t\t\t\t\tif(!!colors){\n\t\t\t\t\t\tif(logs[i].message.indexOf(\'status of 4\') > -1){\n\t\t\t\t\t\t\tconsole.log(colors.yellow(\'[ERROR CLIENT] \' + logs[i].message));\n\t\t\t\t\t\t}\n\t\t\t\t\t\telse if(logs[i].message.indexOf(\'status of 5\') > -1){\n\t\t\t\t\t\t\tconsole.log(colors.red(\'[ERROR API]    \' + logs[i].message));\n\t\t\t\t\t\t}\n\t\t\t\t\t\telse if(logs[i].level === \'SEVERE\'){\n\t\t\t\t\t\t\tconsole.log(colors.blue(\'[SEVERE]       \' + logs[i].message));\n\t\t\t\t\t\t}\n\t\t\t\t\t\telse if(logs[i].level === \'WARNING\'){\n\t\t\t\t\t\t\tconsole.log(colors.grey(\'[WARNING]      \' + logs[i].message));\n\t\t\t\t\t\t}\n\t\t\t\t\t\telse{\n\t\t\t\t\t\t\tconsole.log(colors.grey(\'[\' + logs[i].level + \']      \' + logs[i].message));\n\t\t\t\t\t\t}\n\t\t\t\t\t}else{\n\t\t\t\t\t\tconsole.log(\'[\' + logs[i].level + \']      \' + logs[i].message);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t};\n\n';
+	return 'module.exports = {\n\ttags:[\'' + tag + '\'],\n\t\'' + tag + '\': function(browser) {;\n\t\t\tvar elementIsExists = function(selector) {\n\t\t\t\treturn document.querySelector(selector);\n\t\t\t};\n\n\t\t\tvar logger = function(logs) {\n\t\t\t\tfor(var i in logs){\n\t\t\t\t\tif(logs[i].message.indexOf(\'status of 4\') > -1){\n\t\t\t\t\t\tconsole.log(\'[ERROR CLIENT] \' + logs[i].message);\n\t\t\t\t\t}\n\t\t\t\t\telse if(logs[i].message.indexOf(\'status of 5\') > -1){\n\t\t\t\t\t\tconsole.log(\'[ERROR API]    \' + logs[i].message);\n\t\t\t\t\t}\n\t\t\t\t\telse if(logs[i].level === \'SEVERE\'){\n\t\t\t\t\t\tconsole.log(\'[SEVERE]       \' + logs[i].message);\n\t\t\t\t\t}\n\t\t\t\t\telse if(logs[i].level === \'WARNING\'){\n\t\t\t\t\t\tconsole.log(\'[WARNING]      \' + logs[i].message);\n\t\t\t\t\t}\n\t\t\t\t\telse{\n\t\t\t\t\t\tconsole.log(\'[\' + logs[i].level + \']      \' + logs[i].message);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t};\n\n';
 }
 
 function footer() {
@@ -134,10 +136,6 @@ function transpileAction(action, config) {
 	switch (action.action) {
 		case 'url':
 			return (0, _url2.default)(action, config);
-		case 'phone':
-			return (0, _phone2.default)(action);
-		case 'desktop':
-			return (0, _desktop2.default)(action);
 		case 'pause':
 			return (0, _pause2.default)(action);
 		case 'click':
@@ -148,26 +146,27 @@ function transpileAction(action, config) {
 			return (0, _log2.default)(action);
 		case 'assert':
 			return (0, _assert2.default)(action);
-		case 'tablet':
-			return (0, _tablet2.default)(action);
+		case 'resize':
+			return (0, _resize2.default)(action);
 		case 'cookie':
 			return (0, _cookie2.default)(action);
 		default:
-			console.log(colors.red('Error: invalid action: ' + action));
+			console.log(_colors2.default.red('Error: invalid action: ' + action.action));
 			process.exit();
 	}
 }
 
 function shouldTranspileTest(actions, config) {
-
+	console.log('a');
 	if (!config.name) return false;
 	if (!actions.length) return false;
-
+	console.log('b');
 	if (_ramda2.default.prop('type', actions[1]) === 'helper') return false;
-
+	console.log('c');
 	if (!!actions[1].only) {
 		if (actions[1].only === config.name) return true;else return false;
 	}
+	console.log('d');
 
 	if (!!actions[1].notOnly) {
 		if (actions[1].notOnly !== config.name) return true;else return false;

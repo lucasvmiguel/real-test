@@ -1,11 +1,6 @@
 {
   "name": "acom",
   "path": "./tests/",
-  "url":{
-    "default": "http://www.google.com",
-    "prefix": "",
-    "sufix": ""
-  },
   "variables":{
     "search": "real-test github lucasvmiguel"
   }

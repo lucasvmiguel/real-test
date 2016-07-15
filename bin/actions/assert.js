@@ -4,14 +4,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = assert;
+function validate(action) {
+  if (!action.type) {
+    return { error: true, message: 'missing field type in action assert or in an imported test' };
+  }
+  if (!action.selector) {
+    return { error: true, message: 'missing field selector in action assert or in an imported test' };
+  }
+  if (action.type !== 'urlEquals' && action.type !== 'urlContains' && action.type !== 'elemExists' && action.type !== 'elemNotExists' && action.type !== 'text') {
+    return { error: true, message: 'invalid field type in test assert, options available: urlEquals | urlContains | elemExists | elemNotExists | text' };
+  }
+  if (action.type === 'text' && !action.value) {
+    return { error: true, message: 'missing field value in test assert (only type text needs field value)' };
+  }
 
-var _safe = require('colors/safe');
-
-var _safe2 = _interopRequireDefault(_safe);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  return { error: false };
+}
 
 function assert(action) {
+  var result = validate(action);
+  if (result.error) {
+    return result;
+  }
+
   if (!action.timeout) action.timeout = 1;
 
   switch (action.type) {
@@ -24,11 +39,6 @@ function assert(action) {
     case 'elemNotExists':
       return '      browser.waitForElementPresent(\'' + action.selector + '\', ' + action.timeout + ', function(){\n        browser.assert.elementNotPresent(\'' + action.selector + '\');\n      });\n      ';
     case 'text':
-      try {
-        return '\t\t\tbrowser.waitForElementPresent(\'' + action.selector + '\', ' + action.timeout + ', true, function(){\n            browser.getText(\'' + action.selector + '\', function(result) {\n              if(!!result.value && typeof result.value === \'string\'){\n                this.assert.equal(result.value.toLowerCase(), \'' + action.value.toLowerCase() + '\');\n              }\n            });\n          });';
-      } catch (e) {
-        console.log(_safe2.default.red('Error to create assert action' + e));
-        process.exit();
-      }
+      return '\t\t\tbrowser.waitForElementPresent(\'' + action.selector + '\', ' + action.timeout + ', true, function(){\n          browser.getText(\'' + action.selector + '\', function(result) {\n            if(!!result.value && typeof result.value === \'string\'){\n              this.assert.equal(result.value.toLowerCase(), \'' + action.value.toLowerCase() + '\');\n            }\n          });\n        });';
   }
 }

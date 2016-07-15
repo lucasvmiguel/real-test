@@ -1,15 +1,14 @@
 import R from 'ramda';
+import colors from 'colors';
 
 import click     from './actions/click';
-import desktop   from './actions/desktop';
 import pause     from './actions/pause';
-import phone     from './actions/phone';
 import url       from './actions/url';
 import write     from './actions/write';
 import log       from './actions/log';
 import logger    from './actions/logger';
 import assert    from './actions/assert';
-import tablet    from './actions/tablet';
+import resize    from './actions/resize';
 import cookie    from './actions/cookie';
 
 const DELAY_TIME = 200;
@@ -47,7 +46,13 @@ export function actions(actions, config){
 			 !R.prop('title', action)){
 
 			action = replaceVariables(action, config);
-			actionsStr += transpileAction(action, config) + '\n';
+
+			var actionString = transpileAction(action, config);
+			if (actionString.error) {
+				return actionString;
+			}
+
+			actionsStr += actionString + '\n';
 			actionsStr += pause({value: DELAY_TIME}) + '\n';
 			actionsStr += logger() + '\n\n';
 		}
@@ -57,9 +62,7 @@ export function actions(actions, config){
 }
 
 export function header(tag){
-	return `var colors = require('colors/safe')	;
-
-module.exports = {
+	return `module.exports = {
 	tags:[\'${tag}\'],
 	\'${tag}\': function(browser) {;
 			var elementIsExists = function(selector) {
@@ -68,23 +71,19 @@ module.exports = {
 
 			var logger = function(logs) {
 				for(var i in logs){
-					if(!!colors){
-						if(logs[i].message.indexOf('status of 4') > -1){
-							console.log(colors.yellow('[ERROR CLIENT] ' + logs[i].message));
-						}
-						else if(logs[i].message.indexOf('status of 5') > -1){
-							console.log(colors.red('[ERROR API]    ' + logs[i].message));
-						}
-						else if(logs[i].level === 'SEVERE'){
-							console.log(colors.blue('[SEVERE]       ' + logs[i].message));
-						}
-						else if(logs[i].level === 'WARNING'){
-							console.log(colors.grey('[WARNING]      ' + logs[i].message));
-						}
-						else{
-							console.log(colors.grey('[' + logs[i].level + ']      ' + logs[i].message));
-						}
-					}else{
+					if(logs[i].message.indexOf('status of 4') > -1){
+						console.log('[ERROR CLIENT] ' + logs[i].message);
+					}
+					else if(logs[i].message.indexOf('status of 5') > -1){
+						console.log('[ERROR API]    ' + logs[i].message);
+					}
+					else if(logs[i].level === 'SEVERE'){
+						console.log('[SEVERE]       ' + logs[i].message);
+					}
+					else if(logs[i].level === 'WARNING'){
+						console.log('[WARNING]      ' + logs[i].message);
+					}
+					else{
 						console.log('[' + logs[i].level + ']      ' + logs[i].message);
 					}
 				}
@@ -102,10 +101,6 @@ function transpileAction(action, config){
 	switch(action.action){
 		case 'url':
 			return url(action, config);
-		case 'phone':
-			return phone(action);
-		case 'desktop':
-			return desktop(action);
 		case 'pause':
 			return pause(action);
 		case 'click':
@@ -116,12 +111,12 @@ function transpileAction(action, config){
 			return log(action);
 		case 'assert':
 			return assert(action);
-		case 'tablet':
-			return tablet(action);
+		case 'resize':
+			return resize(action);
 		case 'cookie':
 			return cookie(action);
 		default:
-			console.log(colors.red('Error: invalid action: ' + action));
+			console.log(colors.red('Error: invalid action: ' + action.action));
 			process.exit();
 	}
 }

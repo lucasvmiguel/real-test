@@ -1,4 +1,5 @@
 import R from 'ramda';
+import colors from 'colors';
 
 export function importTests(tests){
 

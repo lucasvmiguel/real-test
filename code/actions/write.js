@@ -1,4 +1,18 @@
+function validate(action){
+	if (!action.selector) {
+		return {error: true, message: 'missing field selector in action write or in an imported test'};
+	}
+	if (!action.value) {
+		return {error: true, message: 'missing field value in action write or in an imported test'};
+	}
+	return {error: false};
+}
+
 export default function write(action){
+	var result = validate(action);
+	if (result.error) {
+		return result;
+	}
 
 	if(!action.timeout) action.timeout = 1;
 

@@ -1,3 +1,6 @@
+import colors from 'colors';
+import R from 'ramda';
+
 import * as io from './io';
 import * as importer from './importer';
 import * as transpiler from './transpiler';
@@ -12,6 +15,11 @@ export function boot(config){
 
 	//get all tests
 	let tests = io.readFiles(config.path + '/**/*.json');
+
+	if (R.isEmpty(tests)) {
+		console.log(colors.red('Error: there are no tests in this folder: ' + config.path));
+		process.exit();
+	}
 
 	//get all tests names
 	let nameFiles = io.readNameFiles(config.path + '/**/*.json');
@@ -30,12 +38,20 @@ function writeTests(config, tests){
 	for(let test of tests){
 		let fileStr = '';
 
-		if(!transpiler.shouldTranspileTest(test, config)){
+		if(R.length(test) < 2 || !transpiler.shouldTranspileTest(test, config)){
 			continue;
 		}
 
 		fileStr += transpiler.header(test[0].title);
-	  fileStr += transpiler.actions(test, config);
+		let compiledActions = transpiler.actions(test, config);
+
+		if (compiledActions.error) {
+			console.log(colors.red('Error: cant run test: ' + test[0].title));
+			console.log(colors.red('Error: ' + compiledActions.message));
+			process.exit();
+		}
+
+	  fileStr += compiledActions;
 		fileStr += transpiler.footer(test);
 
 		io.createFile(`${__dirname}/tests_written/${test[0].title}.js`, fileStr);

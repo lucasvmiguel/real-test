@@ -1,31 +1,21 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = url;
-function url(action, _ref) {
-	var url = _ref.url;
-
+function validate(action) {
 	if (!action.value) {
-		return "\t\t\tbrowser.url(\"" + url.prefix + url.default + url.sufix + "\");";
+		return { error: true, message: 'missing field value in action url or in an imported test' };
+	}
+	return { error: false };
+}
+
+function url(action) {
+	var result = validate(action);
+	if (result.error) {
+		return result;
 	}
 
-	if (!!url.prefix && !!url.default && !!url.sufix) {
-		return "\t\t\tbrowser.url(\"" + url.prefix + url.default + url.sufix + "\");";
-	} else if (!!url.prefix && !!url.default) {
-		return "\t\t\tbrowser.url(\"" + url.prefix + url.default + action.value + "\");";
-	} else if (!!url.prefix && !!url.sufix) {
-		return "\t\t\tbrowser.url(\"" + url.prefix + action.value + url.sufix + "\");";
-	} else if (!!url.default && !!url.sufix) {
-		return "\t\t\tbrowser.url(\"" + action.value + url.default + url.sufix + "\");";
-	} else if (!!url.prefix) {
-		return "\t\t\tbrowser.url(\"" + url.prefix + action.value + "\");";
-	} else if (!!url.default) {
-		return "\t\t\tbrowser.url(\"" + url.default + action.value + "\");";
-	} else if (!!url.sufix) {
-		return "\t\t\tbrowser.url(\"" + action.value + url.sufix + "\");";
-	} else {
-		return "\t\t\tbrowser.url(\"" + action.value + "\");";
-	}
+	return '\t\t\tbrowser.url("' + action.value + '");';
 }

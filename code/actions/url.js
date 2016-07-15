@@ -1,30 +1,15 @@
-export default function url(action, {url}){
-	if(!action.value){
-		return `			browser.url("${url.prefix}${url.default}${url.sufix}");`;
+function validate(action){
+	if (!action.value) {
+		return {error: true, message: 'missing field value in action url or in an imported test'};
+	}
+	return {error: false};
+}
+
+export default function url(action){
+	var result = validate(action);
+	if (result.error) {
+		return result;
 	}
 
-	if(!!url.prefix && !!url.default && !!url.sufix){
-		return `			browser.url("${url.prefix}${url.default}${url.sufix}");`;
-	}
-	else if(!!url.prefix && !!url.default){
-		return `			browser.url("${url.prefix}${url.default}${action.value}");`;
-	}
-	else if(!!url.prefix && !!url.sufix){
-		return `			browser.url("${url.prefix}${action.value}${url.sufix}");`;
-	}
-	else if(!!url.default && !!url.sufix){
-		return `			browser.url("${action.value}${url.default}${url.sufix}");`;
-	}
-	else if(!!url.prefix){
-		return `			browser.url("${url.prefix}${action.value}");`;
-	}
-	else if(!!url.default){
-		return `			browser.url("${url.default}${action.value}");`;
-	}
-	else if(!!url.sufix){
-		return `			browser.url("${action.value}${url.sufix}");`;
-	}
-	else{
-		return `			browser.url("${action.value}");`;
-	}
+	return `			browser.url("${action.value}");`;
 }

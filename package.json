@@ -12,11 +12,12 @@
     "test"
   ],
   "scripts": {
-    "test": "npm run build && mocha --recursive test",
     "build": "babel code --out-dir bin",
-    "release:patch": "npm test && release-it patch",
-    "release:minor": "npm test && release-it minor",
-    "release:major": "npm test && release-it major"
+    "test": "mocha --recursive test",
+    "simulate": "npm run build && npm install -g .",
+    "release:patch": "npm run build && npm test && release-it patch",
+    "release:minor": "npm run build && npm test && release-it minor",
+    "release:major": "npm run build && npm test && release-it major"
   },
   "dependencies": {
     "babel": "^5.8.23",

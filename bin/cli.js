@@ -28,6 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function executeCmd(error, stdout, stderr) {
   if (error) {
     console.log(_colors2.default.red('Error: cant run the tests. ' + error));
+    console.log(_colors2.default.red('Verify if you are online!'));
   } else {
     console.log('Running tests...');
     console.log(stdout);

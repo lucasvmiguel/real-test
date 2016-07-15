@@ -12,6 +12,10 @@ var _ramda = require('ramda');
 
 var _ramda2 = _interopRequireDefault(_ramda);
 
+var _colors = require('colors');
+
+var _colors2 = _interopRequireDefault(_colors);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function importTests(tests) {
@@ -44,7 +48,7 @@ function importTests(tests) {
 		}
 		return tests;
 	} catch (e) {
-		console.log(colors.red('Error: cant import tests. ' + e));
+		console.log(_colors2.default.red('Error: cant import tests. ' + e));
 		process.exit();
 	}
 }

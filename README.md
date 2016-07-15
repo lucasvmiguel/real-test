@@ -30,16 +30,10 @@ $ real-test -h
 
 ## Configuration
 
-* If action url does not have a value attribute, the app will use url attribute in json
 * You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
 ```json
   {
   "name": "CONFIG_A",
-  "url":{
-    "default": "http://www.google.com",
-    "prefix": "",
-    "sufix": ""
-  },
   "variables":{
     "search": "real-test github lucasvmiguel"
   },
@@ -72,7 +66,7 @@ $ real-test -h
   {
     "action": "assert",
     "type": "urlContains|urlEquals|elemExists|elemNotExists|text",
-    "value": "notebook",
+    "value": "notebook", (required only with type text)
     "timeout": 10000
   }
 ```
@@ -92,16 +86,11 @@ $ real-test -h
     "selector": "#nav-search > form > div.nav-right > div > input"
   }
 ```
-* Desktop: change to view desktop
+* Resize: resize the screen
 ```json
   {
-    "action": "desktop"
-  }
-```
-* Phone: change to view phone
-```json
-  {
-    "action": "phone"
+    "action": "resize",
+    "value": "desktop|mobile|tables"
   }
 ```
 * Tablet: change to view tablet

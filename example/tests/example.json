@@ -1,5 +1,5 @@
 [
-  {"action": "url"},
+  {"action": "url", "value": "http://www.google.com"},
   {"action": "desktop"},
   {"action": "write", "value": "!!search", "selector": "#lst-ib"},
   {"action": "click", "selector": "#sblsbb > button"},

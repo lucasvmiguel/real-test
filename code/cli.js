@@ -7,6 +7,7 @@ import sheel from 'shelljs';
 function executeCmd(error, stdout, stderr){
   if(error){
     console.log(colors.red('Error: cant run the tests. ' + error));
+    console.log(colors.red('Verify if you are online!'));
   }else{
     console.log('Running tests...');
     console.log(stdout);

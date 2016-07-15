@@ -1,6 +1,16 @@
-#!/usr/bin/env node
+function validate(action){
+	if (!action.selector) {
+		return {error: true, message: 'missing field selector in action click or in an imported test'};
+	}
+
+	return {error: false};
+}
 
 export default function click(action){
+	var result = validate(action);
+	if (result.error) {
+		return result;
+	}
 
 	if(!action.timeout) action.timeout = 1;
 
