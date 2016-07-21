@@ -8,6 +8,9 @@ function validate(action) {
 	if (!action.selector) {
 		return { error: true, message: 'missing field selector in action click or in an imported test' };
 	}
+	if (action.required === undefined) {
+		return { error: true, message: 'missing field required in action write or in an imported test, please set required true or false' };
+	}
 
 	return { error: false };
 }

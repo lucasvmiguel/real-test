@@ -62,3 +62,7 @@ export function deleteFiles(dirname){
     process.exit();
   }
 }
+
+export function hasFiles(dirname){
+  return !R.isEmpty(glob.sync(dirname));
+}

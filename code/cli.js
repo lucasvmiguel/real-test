@@ -1,13 +1,13 @@
 import fs from 'fs';
 import cli from 'commander';
 import colors from 'colors';
-import {boot} from './boot';
 import sheel from 'shelljs';
+import {boot} from './boot';
+import {hasFiles} from './io';
 
 function executeCmd(error, stdout, stderr){
   if(error){
     console.log(colors.red('Error: cant run the tests. ' + error));
-    console.log(colors.red('Verify if you are online!'));
   }else{
     console.log('Running tests...');
     console.log(stdout);
@@ -19,6 +19,11 @@ function runConfig(cmdWithoutHidden, cmdWithHidden, cmdOnlyOne, cmdHiddenOnlyOne
     var config = JSON.parse(fs.readFileSync(cli.config, 'utf8'));
     console.log(`>Config file: ${cli.config}\n`);
     boot(config);
+
+    if(!hasFiles(__dirname + '/tests_written/*.js')){
+      console.log(colors.red('Error: There is no test files or valid test files'));
+      process.exit()
+    }
 
     if(cli.omit && cli.test){
       sheel.exec(cmdHiddenOnlyOne + cli.test, executeCmd);
@@ -40,7 +45,7 @@ function runConfig(cmdWithoutHidden, cmdWithHidden, cmdOnlyOne, cmdHiddenOnlyOne
 
 export function start(cmd1, cmd2, cmd3, cmd4){
   cli
-    .version('0.7.2')
+    .version('0.8.0')
     .option('-c, --config <config>', 'read config file')
     .option('-o, --omit', 'omit browser window(real-test needs xvfb)')
     .option('-t, --test <test>', 'only runs on test')

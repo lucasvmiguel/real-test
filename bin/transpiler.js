@@ -157,16 +157,15 @@ function transpileAction(action, config) {
 }
 
 function shouldTranspileTest(actions, config) {
-	console.log('a');
+
 	if (!config.name) return false;
 	if (!actions.length) return false;
-	console.log('b');
+
 	if (_ramda2.default.prop('type', actions[1]) === 'helper') return false;
-	console.log('c');
+
 	if (!!actions[1].only) {
 		if (actions[1].only === config.name) return true;else return false;
 	}
-	console.log('d');
 
 	if (!!actions[1].notOnly) {
 		if (actions[1].notOnly !== config.name) return true;else return false;

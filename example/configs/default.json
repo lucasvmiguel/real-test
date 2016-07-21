@@ -1,6 +1,6 @@
 {
   "name": "acom",
-  "path": "./tests/",
+  "path": "/home/USER/tests",
   "variables":{
     "search": "real-test github lucasvmiguel"
   }

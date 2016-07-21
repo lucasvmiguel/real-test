@@ -8,6 +8,7 @@ exports.createFile = createFile;
 exports.readNameFiles = readNameFiles;
 exports.readFiles = readFiles;
 exports.deleteFiles = deleteFiles;
+exports.hasFiles = hasFiles;
 
 var _safe = require('colors/safe');
 
@@ -79,4 +80,8 @@ function deleteFiles(dirname) {
     console.log(_safe2.default.red('Error: cant delete files. ' + e));
     process.exit();
   }
+}
+
+function hasFiles(dirname) {
+  return !_ramda2.default.isEmpty(_glob2.default.sync(dirname));
 }

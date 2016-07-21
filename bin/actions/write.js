@@ -11,6 +11,9 @@ function validate(action) {
 	if (!action.value) {
 		return { error: true, message: 'missing field value in action write or in an imported test' };
 	}
+	if (action.required === undefined) {
+		return { error: true, message: 'missing field required in action write or in an imported test, please set required true or false' };
+	}
 	return { error: false };
 }
 

@@ -12,6 +12,7 @@ $ npm install -g real-test
 ```
 
 ## Quick Start
+* IMPORTANT: CHANGE THE PATH IN CONFIG FILE BEFORE ANYTHING
 
 ```bash
 $ real-test -c /home/user/documents/configs/example.json
@@ -33,11 +34,11 @@ $ real-test -h
 * You can set global variables, these variables will change in tests files (example: {"action": "pause", "value": "!!timeout"})
 ```json
   {
-  "name": "CONFIG_A",
-  "variables":{
-    "search": "real-test github lucasvmiguel"
-  },
-    "path": "/home/user/documents/tests"        "path where the app will read the tests"
+    "name": "CONFIG_A",
+    "path": "/home/user/documents/tests",        "path where the app will read the tests"
+    "variables":{
+      "search": "real-test github lucasvmiguel"
+    }
   }
 ```
 
@@ -48,7 +49,7 @@ $ real-test -h
 ```json
   {
     "action": "header",
-    "type": "helper",            "JUST FOR PARCIAL TEST"
+    "type": "helper",            "THIS IS NEEDED WHEN A FILE WILL BE IMPORTED"
     "only": "CONFIG_NAME_A",     "USE IT"
     "notOnly": "CONFIG_NAME_B"   "OR USE IT"
   }
@@ -62,15 +63,16 @@ $ real-test -h
   }
 ```
 * Assert: compare something
+
 ```json
   {
     "action": "assert",
-    "type": "urlContains|urlEquals|elemExists|elemNotExists|text",
-    "value": "notebook", (required only with type text)
+    "type": "urlContains|urlEquals|elemExists|elemNotExists|text|containsText",
+    "value": "notebook (required only with type text or containsText)",
     "timeout": 10000
   }
 ```
-* Cookie: write or assert
+* Cookie: write
 ```json
   {
     "action": "cookie",
@@ -90,13 +92,7 @@ $ real-test -h
 ```json
   {
     "action": "resize",
-    "value": "desktop|mobile|tables"
-  }
-```
-* Tablet: change to view tablet
-```json
-  {
-    "action": "tablet"
+    "value": "desktop|mobile|tablet"
   }
 ```
 * Log: log into console
