@@ -45,7 +45,7 @@ function runConfig(cmdWithoutHidden, cmdWithHidden, cmdOnlyOne, cmdHiddenOnlyOne
 
 export function start(cmd1, cmd2, cmd3, cmd4){
   cli
-    .version('0.8.0')
+    .version('0.9.1')
     .option('-c, --config <config>', 'read config file')
     .option('-o, --omit', 'omit browser window(real-test needs xvfb)')
     .option('-t, --test <test>', 'only runs on test')
